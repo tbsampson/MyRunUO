@@ -88,8 +88,8 @@ mysqli_free_result($result);
 echo <<<EOF
 <table width="1000">
     <tr>
-	  <th colspan="3" width="650"><h1 class="gold">Guilds of $shard_name</h1></th>
-	  <th width="350" style="text-align:right; vertical-align:middle; margin-bottom:0;">
+	  <th width="350"><h1 class="gold">Guilds of $shard_name</h1></th>
+	  <th colspan="5" style="text-align:right; vertical-align:middle; margin-bottom:0;">
 			<form action="guilds.php" method="get" style="margin-bottom:0; margin-right:4;">		    
 				<input type="search" placeholder="Search for a guild" name="fn">		    	
 				<button>Search</button>
@@ -97,7 +97,7 @@ echo <<<EOF
 	  </th>
 	</tr>
     <tr style="background-image: url(images/bg_dark_slate.png);">
-      <td colspan="4" align="center">
+      <td colspan="6" align="center">
         <table width="994" class="rolodex">
 		  <tr class="gold">
 			<td class="rolodex" width=30><a href="guilds.php">ALL</a></td><td class="rolodex" width=30><a href="guilds.php?fn=A">A</a></td>
@@ -122,6 +122,8 @@ echo <<<EOF
       <td width="855" class="grey">
         <p class="grey" style="text-align:left; font-size:90%; font-style:italic;">Total Guilds Found:&nbsp;$totalguilds</p>
 	  </td>
+	  <td style="width:300px;" class="grey"></td>
+	  <td style="width:300px;" class="grey"></td>	  
       <td width="40">
 
 EOF;
@@ -167,7 +169,7 @@ echo <<<EOF
 	</td>
  </tr>
  <tr>
-  <td colspan="4">
+  <td colspan="6">
     <table width="994">
 
 EOF;
@@ -225,7 +227,7 @@ EOF;
 else {
    echo <<<EOF
           <tr>
-            <td class="no-results" colspan="6">Your search found no guilds</td>
+            <td class="no-results" colspan="8">Your search found no guilds</td>
           </tr>
 
 EOF;
@@ -250,7 +252,7 @@ else
 
 echo <<<EOF
   <tr>
-    <td class="grey" style="text-align:center;font-size:75%;font-style: italic;" colspan="4">
+    <td class="grey" style="text-align:center;font-size:75%;font-style: italic;" colspan="6">
       <small>Last Updated&nbsp;:&nbsp;$dt</small>
     </td>
   </tr>
