@@ -58,8 +58,8 @@ $header_content="MyRunUO, Ultima Online, MMORPG";
 
 //Top Menu Images
 $image_path="images/";
-$img_home="menu_home.png";
-$img_players="menu_players.png";
+$img_home="menu_Home.png";
+$img_players="menu_Players.png";
 $img_guilds="menu_Guilds.png";
 $img_forums="menu_Forums.png";
 $img_discord="menu_Discord.png";
