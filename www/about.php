@@ -28,7 +28,8 @@ $fp = fsockopen($shard_addr, $shard_port);
 
 if (!$fp) {
     echo "<td class=\"red\" align=\"center\">Offline</td></tr></table>";
-} else {
+	}
+	else {
 
     fwrite($fp, "\x7f\x00\x00\x01\xf1\x00\x04\xff");
     stream_set_timeout($fp, 1);
@@ -39,7 +40,8 @@ if (!$fp) {
 
     if ($info['timed_out']) {
         echo "<td class=\"red\" align=\"center\">Offline</td></tr></table>";
-    } else {
+    }
+	else {
 
 	$ver = '';
 
@@ -57,8 +59,10 @@ $mem 	 = ltrim(strstr($arr[6], '='), '=');
 if ($emu <> "ServUO") $ver = "Unknown"; // Only ServUO Shards return version
 else $ver = ltrim(strstr($arr[07], '='), '=');
 
-
-// Example usage
+if ($name == '' || $age == '') { // Server is online but blocking repeated requests
+    echo "<td class=\"green\" align=\"center\">Online</td></tr></table>";
+	}
+else {
 echo <<<EOF
 
 
@@ -101,7 +105,7 @@ echo <<<EOF
 </div>
 EOF;
     }
-
+	}
 }
 
 ?>

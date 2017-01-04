@@ -16,6 +16,12 @@ IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 Check the forums on www.ServUO.com for more information about ServUO and MyRunUO
 
 */
+// Error Reporting
+/*
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+*/
 
 // Path
 $base_ref="localhost"; // This is the root URL where your MyRunUO resides, minus the http://
@@ -43,7 +49,7 @@ $guilds_perpage = 12;
 $url_home="index.php";
 $url_players="players.php";
 $url_guilds="guilds.php";
-$url_forums="https://www.servuo.com/archive/myrunuo-for-servuo.766/";
+$url_forums="https://www.servuo.com/threads/myrunuo-for-servuo.6016/#post-39510";
 $url_discord="https://discordapp.com/invite/0cQjvnFUN26nRt7y";
 $url_about="about.php";
 
@@ -97,9 +103,9 @@ function sql_connect()
   global $SQLhost, $SQLport, $SQLdb, $SQLuser, $SQLpass;
 
   if ($SQLport != "")
-    $link = @mysqli_connect("$SQLhost:$SQLport","$SQLuser","$SQLpass");
+    $link = @mysqli_connect("$SQLhost","$SQLuser","$SQLpass","$SQLdb","$SQLport");
   else
-    $link = @mysqli_connect("$SQLhost","$SQLuser","$SQLpass");
+    $link = @mysqli_connect("$SQLhost","$SQLuser","$SQLpass","$SQLdb","$SQLport");
   if (!$link) {
     echo "Database access error ".mysql_errno().": ".mysql_error()."\n";
     die();
