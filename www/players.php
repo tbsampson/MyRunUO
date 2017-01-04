@@ -78,13 +78,13 @@ if ($where != "")
   $wherep = $where." AND char_public=0";
 else
   $wherep = "WHERE char_public=0";
-$result = sql_query($link, "SELECT COUNT(*) FROM MyRunUO_characters $wherep");
+$result = sql_query($link, "SELECT COUNT(*) FROM myrunuo_characters $wherep");
 list($totalpublic) = mysqli_fetch_row($result);
 $totalpublic = intval($totalpublic);
 mysqli_free_result($result);
 
 // Total players
-$result = sql_query($link, "SELECT COUNT(*) FROM MyRunUO_characters $where");
+$result = sql_query($link, "SELECT COUNT(*) FROM myrunuo_characters $where");
 list($totalplayers) = mysqli_fetch_row($result);
 $totalplayers = intval($totalplayers);
 mysqli_free_result($result);
