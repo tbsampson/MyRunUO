@@ -299,7 +299,7 @@ background-image: none;
 }
 
 .statusscroll {
-  position: fixed;
+  position: absolute;
   z-index:-1;
   top: 172px;
   left: 50%;

@@ -37,8 +37,8 @@ function LoadRAZORsetup($logo,$shard,$port,$name)
 	else
 	{
 		/* Everything looks good, write in the shard_addr and shard_port */
-		$font_name = 'fonts/Avatar.ttf';
-		$font_server = 'fonts/Calibri.ttf'; // Choose a more readble font for the server name and port
+		$font_name = realpath('fonts/Avatar.ttf');
+		$font_server = realpath('fonts/Calibri.ttf'); // Choose a more readble font for the server name and port
 		imagettftext($im, 45, 0, 82, 53, $sc, $font_name, $name); // Write Server Name Shadow First
 		imagettftext($im, 45, 0, 80, 55, $tc, $font_name, $name); // Write Server Name
 		imagettftext($im, 18, 0, 81, 89, $sc, $font_server, $shard . ":" . $port); // Write Server address and port Shadow First

@@ -9,11 +9,12 @@ namespace Server.Engines.MyRunUO
         // Is MyRunUO enabled?
         public static bool Enabled = true;
         // Details required for database connection string
-        public const string DatabaseDriver = "{MySQL ODBC 5.3 Unicode Driver}";
+        public const string DatabaseDriver = "{MySQL ODBC 8.0 Unicode Driver}";
         public const string DatabaseServer = "localhost";
         public const string DatabaseName = "myrunuo";
         public const string DatabaseUserID = "root";
         public const string DatabasePassword = "";
+        public const string DatabaseDSN = "myrunuo";		
         // Should the database use transactions? This is recommended
         public static bool UseTransactions = true;
         // Use optimized table loading techniques? (LOAD DATA INFILE)
@@ -32,8 +33,8 @@ namespace Server.Engines.MyRunUO
         public static TimeSpan StatusUpdateInterval = TimeSpan.FromMinutes(1.0);
         public static string CompileConnectionString()
         {
-            string connectionString = String.Format("DRIVER={0};SERVER={1};DATABASE={2};UID={3};PASSWORD={4};",
-                DatabaseDriver, DatabaseServer, DatabaseName, DatabaseUserID, DatabasePassword);
+            string connectionString = String.Format("DRIVER={0};SERVER={1};DATABASE={2};UID={3};PASSWORD={4};DSN={5};",
+                DatabaseDriver, DatabaseServer, DatabaseName, DatabaseUserID, DatabasePassword, DatabaseDSN);
 
             return connectionString;
         }

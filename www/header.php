@@ -14,7 +14,7 @@
 	<link href="favicon.ico" rel="favicon" type="image/x-icon" />
 	<link rel="stylesheet" href="styles/default.css" type="text/css" />
 </head>
-<body>
+<body style="background-color: rgba(255, 255, 255, 0);">
 	<center>
 		<img src="make_logo.php" height=100 width=1020>
 		<table class="topmenublock">
@@ -27,4 +27,5 @@
 				<td style="background-image:none;padding:0px;padding-top:12px;border-collapse: collapse;" align="center"><a style="border-collapse: collapse;" href="<?=$url_about?>"><img src="<?=$image_path?><?=$img_about?>"></a></td>				
 			</tr>
 		</table>
+	
 

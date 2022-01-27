@@ -31,7 +31,7 @@ function LoadRAZORsetup($imgname,$shard,$port)
 	else
 	{
 		/* Everything looks good, write in the shard_addr and shard_port */
-		$font_path = 'fonts/Calibri.ttf';
+		$font_path = realpath('fonts/Calibri.ttf');
 		imagettftext($im, 12, 0, 62, 201, $tc, $font_path, $shard);
 		imagettftext($im, 12, 0, 305, 201, $tc, $font_path, $port);		
 	}

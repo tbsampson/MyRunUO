@@ -1,6 +1,6 @@
 <?php
 /*
-Copyright 2016-2017 Tom Sampson aka. Ixtabay 
+Copyright 2016-2022 Tom Sampson aka. Ixtabay 
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), 
 to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, 
@@ -37,6 +37,7 @@ $SQLport = "3306";
 $SQLuser = "root";
 $SQLpass = "";
 $SQLdb   = "myrunuo";
+$SQLdsn  = "myrunuo";
 $mulpath = "MUL_FILES/"; // Edit path of .mul files: gumpart.mul gumpidx.mul hues.mul tiledata.mul
 $validhosts = ""; // Leave blank to allow any host to use your paperdoll generator.
 
@@ -53,7 +54,7 @@ $url_forums="https://www.servuo.com/threads/myrunuo-for-servuo.6016/#post-39510"
 $url_discord="https://discordapp.com/invite/0cQjvnFUN26nRt7y";
 $url_about="about.php";
 
-$url_download_client="http://web.cdn.eamythic.com/us/uo/installers/20120309/UOClassicSetup_7_0_24_0.exe";
+$url_download_client="https://downloads.eamythic.com/uo/installers/UOClassicSetup_7_0_24_0.exe";
 $url_download_razor="http://www.uorazor.com/downloads/Razor_Latest.exe";
 
 // Default Language English - change below to suit your needs
@@ -107,13 +108,13 @@ function sql_connect()
   else
     $link = @mysqli_connect("$SQLhost","$SQLuser","$SQLpass","$SQLdb","$SQLport");
   if (!$link) {
-    echo "Database access error ".mysql_errno().": ".mysql_error()."\n";
+    echo "Database access error ".mysqli_errno().": ".mysqli_error()."\n";
     die();
   }
   
   $result = mysqli_select_db($link, $SQLdb);
   if (!$result) {
-    echo "Error ".mysql_errno($link)." selecting database '$SQLdb': ".mysql_error($link)."\n";
+    echo "Error ".mysqli_errno($link)." selecting database '$SQLdb': ".mysqli_error($link)."\n";
     die();
   }
   return $link;
@@ -133,7 +134,7 @@ function sql_query($link, $query)
 // --------------------------------------------------------------------------------------------------------------- check_get
 function check_get(&$store, $val)
 {
-  $magic = get_magic_quotes_gpc();
+  $magic = false;
   if (isset($_POST["$val"])) {
     if ($magic)
       $store = stripslashes($_POST["$val"]);

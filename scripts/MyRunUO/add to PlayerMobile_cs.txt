@@ -1,0 +1,7 @@
+
+You need to add the code below to PlayerMobile.cs (around line 220, search for "private DesignContext m_DesignContext;" and insert this  after it)
+
+		// MyRunUO Start
+			public bool PublicMyRunUO;
+			public bool ChangedMyRunUO;
+		// MyRunUO End

@@ -2,7 +2,7 @@
 
 
 // Paperdoll Graphic Area
-$mulpath = "OLD_FILES/";
+$mulpath = "MUL_FILES/";
 $width = 182;
 $height = 237;
 $hues = FALSE;
@@ -10,7 +10,7 @@ $tiledata = FALSE;
 $gumpfile = FALSE;
 $gumpindex = FALSE;
 
-$hues = fopen("{$mulpath}hues.mul", "rb");
+$hues = fopen("{$mulpath}hues.mul", "rb", );
 if ($hues == FALSE)
 {
   die("Unable to open hues.mul - ERROR\nDATAEND!");

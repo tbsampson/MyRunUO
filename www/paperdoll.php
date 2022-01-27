@@ -320,6 +320,22 @@ function LoadRawGump($gumpindex, $gumpfile, $index, $hue, $hues, &$gumprawdata)
 
         // Check if we're applying a special hue (skin hues), if so, apply only to grays
         if (($orighue > 0x8000) && ($r == $g && $r == $b)) {
+          $newr = $r * 8;
+          $newg = $g * 8;
+          $newb = $b * 8;          
+        }
+        else if ($orighue > 0x8000) {
+          $newr = $r * 8;
+          $newg = $g * 8;
+          $newb = $b * 8;
+        }
+        else {
+          $newr = $r * 8;
+          $newg = $g * 8;
+          $newb = $b * 8;          
+        }		
+/*		If you are using an older client <= 7.0.55 then this will correct player hue.  Comment out above and enable this.
+        if (($orighue > 0x8000) && ($r == $g && $r == $b)) {
           $newr = (($color32[$r] >> 10))*8;
           $newg = (($color32[$r] >> 5) & 0x1F)*8;
           $newb = ($color32[$r] & 0x1F)*8;
@@ -334,6 +350,7 @@ function LoadRawGump($gumpindex, $gumpfile, $index, $hue, $hues, &$gumprawdata)
           $newg = (($color32[$r] >> 5) & 0x1F)*8;
           $newb = ($color32[$r] & 0x1F)*8;
         }
+*/		
         if((($r * 8) > 0) || (($g * 8) > 0) || (($b * 8) > 0))
           $send_data .= sprintf("%d:%d:%d:%d:%d:%d***", $x , $y, $newr, $newg, $newb, $length);
         $x += $length;
@@ -368,7 +385,7 @@ function add_gump($read, &$img)
   $data = explode("DATASTART:\n", $read);
   $data = $data[1];
   $newdata = explode("***", $data);
-  while (list($key, $val) = @each($newdata)) {
+  foreach($newdata as $key => $val) {
     if ($val == "DATAEND!")
       break;
     $val = explode(":", $val);
@@ -378,6 +395,15 @@ function add_gump($read, &$img)
     $g = intval($val[3]);
     $b = intval($val[4]);
     $length = intval($val[5]); // pixel color repeat length
+  
+    //fix for an error where red component was out of range
+    if($r > 255) { $r = 255; }
+    if($g > 255) { $g = 255; }
+    if($b > 255) { $b = 255; }
+    if($r < 0) { $r = 0; }
+    if($g < 0) { $g = 0; }
+    if($b < 0) { $b = 0; }
+  
     if ($r || $g || $b) {
       $col = imagecolorallocate($img, $r, $g, $b);
       for ($i = 0; $i < $length; $i++)
@@ -407,7 +433,7 @@ $charGuildName = trim($charGuildName);
 	$red =  imagecolorallocate($img, 189, 0, 0); // For players killers
 	$black = imagecolorallocate($img, 0, 0, 0);
 	$green = imagecolorallocate($img, 132, 231, 49); // For guild names and titles
-	$font = './fonts/Oswald-Regular.ttf'; // JimNightshade-Regular
+	$font = realpath('./fonts/Oswald-Regular.ttf'); // JimNightshade-Regular
 	$fontsize = 14;
 	$fontangle = 0;
 

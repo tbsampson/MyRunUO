@@ -9,6 +9,9 @@ using Server.Guilds;
 using Server.Misc;
 using Server.Mobiles;
 
+
+
+
 namespace Server.Engines.MyRunUO
 {
     public class MyRunUO : Timer
@@ -33,6 +36,9 @@ namespace Server.Engines.MyRunUO
         private StreamWriter m_OpSkills;
         private StreamWriter m_OpLayers;
         private StreamWriter m_OpMobiles;
+
+			
+		
         public MyRunUO()
             : base(TimeSpan.FromSeconds(CpuInterval), TimeSpan.FromSeconds(CpuInterval))
         {
@@ -67,7 +73,9 @@ namespace Server.Engines.MyRunUO
         [Description("Enables showing extended character stats and skills in MyRunUO.")]
         public static void PublicChar_OnCommand(CommandEventArgs e)
         {
+		
             PlayerMobile pm = e.Mobile as PlayerMobile;
+
 
             if (pm != null)
             {
@@ -486,7 +494,7 @@ namespace Server.Engines.MyRunUO
         public void InsertGuild(Guild guild)
         {
             string guildType = "Standard";
-
+			/*
             switch ( guild.Type )
             {
                 case GuildType.Chaos:
@@ -496,6 +504,7 @@ namespace Server.Engines.MyRunUO
                     guildType = "Order";
                     break;
             }
+			*/
 
             this.ExecuteNonQuery("INSERT INTO myrunuo_guilds (guild_id, guild_name, guild_abbreviation, guild_website, guild_charter, guild_type, guild_wars, guild_members, guild_master) VALUES ({0}, '{1}', {2}, {3}, {4}, '{5}', {6}, {7}, {8})", guild.Id.ToString(), this.SafeString(guild.Name), guild.Abbreviation == "none" ? "NULL" : "'" + this.SafeString(guild.Abbreviation) + "'", guild.Website == null ? "NULL" : "'" + this.SafeString(guild.Website) + "'", guild.Charter == null ? "NULL" : "'" + this.SafeString(guild.Charter) + "'", guildType, guild.Enemies.Count.ToString(), guild.Members.Count.ToString(), guild.Leader.Serial.Value.ToString());
         }

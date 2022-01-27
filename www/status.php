@@ -55,13 +55,6 @@ $result = sql_query($link, "SELECT myrunuo_status.char_id,myrunuo_characters.cha
                     ORDER BY $sortby $sw LIMIT $tp,$status_perpage");
 
 echo <<<EOF
-<table width="640" border="0" cellspacing="0" cellpadding="0">
-  <tr align="center" valign="middle"> 
-    <th><a href="players.php"><b>View Players</b></a></th>
-    <th><a href="searchplayers.php"><b>Search Players</b></a></th>
-    <th><a href="guilds.php"><b>View Guilds</b></a></th>
-  </tr>
-</table>
 
 <h1>Server Status</h1>
 
