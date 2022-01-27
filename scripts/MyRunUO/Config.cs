@@ -14,7 +14,9 @@ namespace Server.Engines.MyRunUO
         public const string DatabaseName = "myrunuo";
         public const string DatabaseUserID = "root";
         public const string DatabasePassword = "";
+// Windows users may find easier to use a dsn (ODBC Data Sources) configure one on your server "myrunuo" for your MySQL server
         public const string DatabaseDSN = "myrunuo";		
+		
         // Should the database use transactions? This is recommended
         public static bool UseTransactions = true;
         // Use optimized table loading techniques? (LOAD DATA INFILE)
@@ -33,7 +35,10 @@ namespace Server.Engines.MyRunUO
         public static TimeSpan StatusUpdateInterval = TimeSpan.FromMinutes(1.0);
         public static string CompileConnectionString()
         {
+			
             string connectionString = String.Format("DRIVER={0};SERVER={1};DATABASE={2};UID={3};PASSWORD={4};DSN={5};",
+// if you dont want/need to use dsn, comment out the line above and use the one below.
+// string connectionString = String.Format("DRIVER={0};SERVER={1};DATABASE={2};UID={3};PASSWORD={4};",			
                 DatabaseDriver, DatabaseServer, DatabaseName, DatabaseUserID, DatabasePassword, DatabaseDSN);
 
             return connectionString;
